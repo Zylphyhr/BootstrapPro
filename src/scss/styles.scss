@@ -1,0 +1,28 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/mixins/buttons";
+
+.custom-btn {
+  @include button-outline-variant(#FF5733, #FF5733, #FFF);
+}
+
+@mixin mybootstrap-btn( $background, $color, $paddingx, $paddingy,
+  $borderradius, $fontsize  ) {
+    @include button-variant( $color, $background );
+    @include button-size( $paddingx, $paddingy, $fontsize, $borderradius );
+}
+.mymixin-button {
+  @include mybootstrap-btn( white, blue, 30px, 100px, 15px, 30px );
+}
+@mixin bootstrap-button($background) {
+  $color: #FFF;
+  $border: 5%;
+  @if( lightness($background) >= lightness(#AAA) ) {
+    $color: #333;
+    $border: .2 * lightness($background);
+  }
+  @include button-variant( $color, $background, darken( $background, $border ) );
+}
+.btn-mixin2 {
+   @include bootstrap-button(#FF5733);
+}
